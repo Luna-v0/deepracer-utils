@@ -7,12 +7,13 @@ name = "deepracer-utils"
 dynamic = ["version"]
 description = "A set of tools for working with DeepRacer training"
 readme = { file = "README.md", content-type = "text/markdown" }
-license = "MIT-0"
-requires-python = ">=3.9"
+license = { text = "MIT-0" }
+requires-python = ">=3.8"
 authors = [{ name = "AWS DeepRacer Community" }]
 keywords = ["aws", "deepracer", "awsdeepracer"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
