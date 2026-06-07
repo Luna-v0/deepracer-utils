@@ -36,6 +36,14 @@ visualization = [
     "tensorflow>=2.10.0",
     "opencv-python-headless",
 ]
+# Reading the dr-gym Tier-1 trace (Parquet shards) — see deepracer/logs/gym_trace.py.
+gym = [
+    "pyarrow>=10.0.0",
+]
+# Reliable RL evaluation (IQM, performance profiles, …) — deepracer/logs/rliable_utils.py.
+rliable = [
+    "rliable>=1.1.0",
+]
 dev = [
     "check-manifest",
     "black",
