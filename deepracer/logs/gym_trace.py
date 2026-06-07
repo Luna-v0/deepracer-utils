@@ -197,17 +197,22 @@ def load_track(name: str, tracks_dir: Optional[str] = None):
     """Load a :class:`~deepracer.tracks.track_utils.Track` by name.
 
     Looks for ``<name>.npy`` (the (N, 6) center/inner/outer waypoint array) in,
-    in order: *tracks_dir* arg, ``$DEEPRACER_TRACKS_DIR``, then the track
-    ``.npy`` files bundled with this library's test data (which include
-    ``reinvent_base``). Point *tracks_dir* at a directory of track ``.npy``
-    files (e.g. from the deepracer track-geometry repo) for other worlds.
+    in order: *tracks_dir* arg, ``$DEEPRACER_TRACKS_DIR``, the track ``.npy``
+    files shipped as package data (``deepracer/tracks/data`` — ``reinvent_base``
+    out of the box), then the repo's test data (dev checkouts). Point
+    *tracks_dir* at a directory of track ``.npy`` files (e.g. from the deepracer
+    track-geometry repo) for other worlds.
     """
+    import deepracer.tracks as _tracks_pkg
     from deepracer.tracks import TrackIO
 
+    pkg_data = os.path.join(os.path.dirname(_tracks_pkg.__file__), "data")
     candidates = [
         tracks_dir,
         os.environ.get("DEEPRACER_TRACKS_DIR"),
-        # Bundled with the package tests — ships reinvent_base and friends.
+        # Shipped as package data — present in a wheel install.
+        pkg_data,
+        # Repo test data — present only in a source checkout.
         os.path.join(os.path.dirname(os.path.dirname(__file__)),
                      "..", "tests", "deepracer", "track_utils", "tracks"),
     ]

@@ -67,6 +67,11 @@ test = [
 [tool.setuptools.packages.find]
 include = ["deepracer", "deepracer.*"]
 
+[tool.setuptools.package-data]
+# Ship bundled track waypoint files so load_track() works from a wheel install
+# (no source checkout / DEEPRACER_TRACKS_DIR needed) for the included tracks.
+"deepracer.tracks" = ["data/*.npy"]
+
 [tool.setuptools_scm]
 tag_regex = "^deepracer-utils-(?P<version>[vV]?[\\d]+(?:\\.[\\d]+)*(?:[._-]?[\\w]+)*)$"
 
